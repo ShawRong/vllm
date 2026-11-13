@@ -2770,3 +2770,15 @@ def build_linear_method(config, algo: str, prefix: str) -> LinearMethodBase:
         return builder(config, prefix)
     spec, ctx, format_scheme = resolve(algo, config, prefix)
     return ModelOptLinearMethod(spec, ctx, format_scheme)
+
+
+def _install_resserve_nvfp4() -> None:
+    # Imported last: the builder closes over resolve() and LINEAR_METHOD_BUILDERS.
+    from vllm.model_executor.layers.quantization.resserve_method import (
+        register_resserve_nvfp4,
+    )
+
+    register_resserve_nvfp4()
+
+
+_install_resserve_nvfp4()

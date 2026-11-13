@@ -2,9 +2,10 @@
 # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
 """Opt-in FlashInfer ResServe calls for an NVFP4 linear layer.
 
-These functions are not registered with the NVFP4 kernel selector.
-``backend="auto"`` does not reach them. They target
-https://github.com/flashinfer-ai/flashinfer/pull/6889.
+``ResServeNvFp4LinearMethod`` is what a sidecar-backed checkpoint uses.
+These functions are the two GEMM calls that method makes. They are not
+registered with the NVFP4 kernel selector. ``backend="auto"`` does not reach
+them. They target https://github.com/flashinfer-ai/flashinfer/pull/6889.
 
 MEXT and KEXT are separate paths.
 
